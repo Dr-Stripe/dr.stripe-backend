@@ -1,12 +1,13 @@
 const express = require("express");
-const app = express();
 
-const port = 9000 || process.env.PORT;
+const setupServer = () => {
+  const app = express();
 
-app.get("/", (req, res) => {
-  res.send("hello");
-});
+  app.get("/", (req, res) => {
+    res.send("hello");
+  });
 
-app.listen(port, () => {
-  console.log(`We are lisning ${port}`);
-});
+  return app;
+};
+
+module.exports = { setupServer };
