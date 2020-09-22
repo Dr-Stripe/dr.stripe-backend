@@ -7,6 +7,12 @@ const setupServer = () => {
     res.send("hello");
   });
 
+  app.post("/visits", (req, res) => {
+    res.send("add information of a patient");
+  });
+
+  app.get("/");
+
   return app;
 };
 
