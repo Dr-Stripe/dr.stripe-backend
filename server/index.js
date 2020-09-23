@@ -1,7 +1,7 @@
 const { setupServer } = require("./app");
 const app = setupServer();
 
-const port = 9000 || process.env.PORT;
+const port = process.env.PORT || 9000;
 
 app.listen(port, () => {
   console.log(`We are lisning ${port}`);

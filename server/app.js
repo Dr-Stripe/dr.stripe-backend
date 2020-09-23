@@ -9,28 +9,29 @@ const setupServer = () => {
 
   app.post("/visits", (req, res) => {
     res.send("add information of a patient");
-
   });
 
-  //try, put ? 
-  app.put("/:id",async => {
-    const {id} = req.params;
-    const changes = req.body;
+  // try, post ?
+  // app.post("/:patient_id",async => {
+  //   const {patient_id} = req.params;
+  //   const changes = req.body;
+  //   console.log("I'm in post1")
 
-    try {
-      const something = await db("visit").where({id}).update(changes);
-      if ( something ){
-        res.status(200).json({update: something})
-      } else {
-        res.status(404).json({message:"Not found"})
-      }
-    } catch (err) {
-      res.status(500).json({message: "Error updating new post", error:err})
-    }
-  });
+  //   try {
+  //     const something = await db("visits").where({patient_id}).update(changes);
+  //     console.log("I'm in post1")
 
+  //     if ( something ){
+  //       res.status(200).json({update: something})
+  //     } else {
+  //       res.status(404).json({message:"Not found"})
+  //     }
+  //   } catch (err) {
+  //     res.status(500).json({message: "Error updating new post", error:err})
+  //   }
+  // });
 
-  app.get("/payments/1", async (req, res) => {
+  app.get("/payments/2", async (req, res) => {
     const ptData = await db
       .select(
         "price",
@@ -40,9 +41,11 @@ const setupServer = () => {
         "doctor",
         "medicine"
       )
-      .from("visits");
+      .from("visits")
+      .where("patient_id", 2);
     console.log("this is data", ptData);
-    // res.send("here is your patient information");
+    res.json(ptData);
+    // res.send("hello");
   });
 
   return app;
