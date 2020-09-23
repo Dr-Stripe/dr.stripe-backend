@@ -39,6 +39,8 @@ const setupServer = () => {
    }
   });
 
+ 
+
   app.get("/payments/2", async (req, res) => {
     const ptData = await db
       .select(
