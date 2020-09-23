@@ -16,23 +16,27 @@ const setupServer = () => {
     const {patient_id} = req.params;
     const changes = req.body;
     changes["date_visit"]=moment().format('L')
-    console.log(changes);
-    // {
-    //   "treatment": "massarge",
+    console.log(changes)
+    // 
     //   "symptoms": "Azuma",
     //   "doctor": "Yamada",
     //   "paid": false,
     //   "hospital_name": "Tokyo clinic"
     // }]
     //res.json(changes)
-    
+    //console.log(changes)
     try {
-      db.insert(changes).into('visits')
+      db.select().table("visits").insert(
+        {
+          patient_id: changes.patient_id
+        }
+      );
       // if ( something ){
       //   res.status(200).json({update: something})
       // } else {
       //   res.status(404).json({message:"Not found"})
       // }
+      console.log(changes)
       res.json(changes)
     } catch (err) {
     //   res.status(500).json({message: "Error updating new post", error:err})
@@ -49,11 +53,12 @@ const setupServer = () => {
         "treatment",
         "visit_date",
         "doctor",
+        "paid",
         "medicine"
       )
       .from("visits")
       .where("patient_id", 1);
-    console.log("this is data", ptData);
+
     res.json(ptData);
   });
 
