@@ -1,7 +1,6 @@
 const express = require("express");
 const db = require("./knex");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const knexfile = require("../knexfile");
 const moment = require("moment")
 require('dotenv').config()
@@ -11,7 +10,6 @@ const setupServer = () => {
   const app = express()
   app.use(cors());
   app.use(express.json());
-  app.use(bodyParser.json());
   app.post("/visits/:patient_id",async(req, res) => {
     const {patient_id} = req.params;
     // {
