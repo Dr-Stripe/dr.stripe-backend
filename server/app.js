@@ -35,42 +35,11 @@ const setupServer = () => {
       }).then(function(result){
         res.json({success: true, message: 'ok'})
       })
-      // if ( something ){
-      //   res.status(200).json({update: something})
-      // } else {
-      //   res.status(404).json({message:"Not found"})
-      // }
     } catch (err) {
       res.status(500).json({message: "Error updating new post", error:err})
   
    }
-  // });
 
-  // try, post ?
-  // app.post("/visits/:patient_id",async(req, res) => {
-  //   const {patient_id} = req.params;
-  //   const changes = req.body;
-  //   changes["visit_date"]=moment().format('L')
-  //   console.log(changes)
-    
-    //   "symptoms": "Azuma",
-    //   "doctor": "Yamada",
-    //   "paid": false,
-    //   "hospital_name": "Tokyo clinic"
-    // }]
-  //   res.json(changes)
-  //   console.log(changes)
-  //   try {
-  //     console.log(changes)
-  //     db.table("visits").insert(
-  //       changes
-  //     )//.into("visits")
-      
-  //     res.json(changes)
-  //   } catch (err) {
-  //   //   res.status(500).json({message: "Error updating new post", error:err})
-    
-  //  }
   });
 
  
@@ -91,6 +60,33 @@ const setupServer = () => {
 
     res.json(ptData);
   });
+
+
+  //Test endpoint for stripe checkout, probably will change
+  app.post('/create-session', async(req, res)=>{
+    console.log(req.body)
+    console.log(req.body.price)
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'jpy',
+            product_data: {
+              name: 'doctor_visit'
+            },
+            unit_amount: 2000,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `https://dr-stripe-frontend.vercel.app/`,
+      cancel_url: `https://dr-stripe-frontend.vercel.app/`,
+    });
+    res.json({ id: session.id });
+  });
+
 
   return app;
 };
