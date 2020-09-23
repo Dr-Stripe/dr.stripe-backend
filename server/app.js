@@ -52,7 +52,7 @@ const setupServer = () => {
         "medicine"
       )
       .from("visits")
-      .where("patient_id", 2);
+      .where("patient_id", 1);
     console.log("this is data", ptData);
     res.json(ptData);
   });
