@@ -4,8 +4,11 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const knexfile = require("../knexfile");
 const moment = require("moment")
+require('dotenv').config()
+const stripe = require('stripe')(process.env.STRIPE_API_KEY)
+
 const setupServer = () => {
-  const app = express();
+  const app = express()
   app.use(cors());
   app.use(express.json());
   app.use(bodyParser.json());
