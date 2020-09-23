@@ -12,24 +12,24 @@ const setupServer = () => {
   });
 
   // try, post ?
-  app.post("/:patient_id",async => {
-    const {patient_id} = req.params;
-    const changes = req.body;
-    console.log("I'm in post1")
+  // app.post("/:patient_id",async => {
+  //   const {patient_id} = req.params;
+  //   const changes = req.body;
+  //   console.log("I'm in post1")
 
-    try {
-      const something = await db("visits").where({patient_id}).update(changes);
-      console.log("I'm in post1")
+  //   try {
+  //     const something = await db("visits").where({patient_id}).update(changes);
+  //     console.log("I'm in post1")
 
-      if ( something ){
-        res.status(200).json({update: something})
-      } else {
-        res.status(404).json({message:"Not found"})
-      }
-    } catch (err) {
-      res.status(500).json({message: "Error updating new post", error:err})
-    }
-  });
+  //     if ( something ){
+  //       res.status(200).json({update: something})
+  //     } else {
+  //       res.status(404).json({message:"Not found"})
+  //     }
+  //   } catch (err) {
+  //     res.status(500).json({message: "Error updating new post", error:err})
+  //   }
+  // });
 
   app.get("/payments/2", async (req, res) => {
     const ptData = await db
