@@ -41,7 +41,7 @@ const setupServer = () => {
 
  
 
-  app.get("/payments/2", async (req, res) => {
+  app.get("/payments", async (req, res) => {
     const ptData = await db
       .select(
         "price",
