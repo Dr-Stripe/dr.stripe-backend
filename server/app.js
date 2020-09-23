@@ -62,6 +62,34 @@ const setupServer = () => {
     res.json(ptData);
   });
 
+
+  //Test endpoint for stripe checkout, probably will change
+  app.post('/create-session', async(req, res)=>{
+    console.log(req.body)
+    console.log(req.body.price)
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'jpy',
+            product_data: {
+              name: 'doctor_visit'
+            },
+            unit_amount: 2000,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `https://dr-stripe-frontend.vercel.app/`,
+      cancel_url: `https://dr-stripe-frontend.vercel.app/`,
+    });
+    res.json({ id: session.id });
+  });
+
+
+
   return app;
 };
 
