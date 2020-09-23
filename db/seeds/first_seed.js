@@ -6,6 +6,7 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return knex("visits").insert([
         {
+          patient_id: 2,
           visit_date: "2019-12-11T04:22:27Z",
           treatment:
             "Asthma check up - Patient talked about recent trouble breathing.",
@@ -17,6 +18,7 @@ exports.seed = function (knex) {
           medicine: true,
         },
         {
+          patient_id: 2,
           visit_date: "2019-10-15T00:30:46Z",
           treatment:
             "Follow up appointment regarding new inhaler for Asthma. New inhaler seems to be helping patient breathe more easily.",
@@ -28,6 +30,7 @@ exports.seed = function (knex) {
           medicine: false,
         },
         {
+          patient_id: 2,
           visit_date: "2020-01-06T05:39:57Z",
           treatment:
             "Patient talks about recent coughing and heavy feeling in chest. New inhaler given as prescription",
@@ -39,6 +42,7 @@ exports.seed = function (knex) {
           medicine: true,
         },
         {
+          patient_id: 2,
           visit_date: "2020-07-28T07:28:22Z",
           treatment:
             "Asthma check up - Patient talked about recent trouble breathing.",
@@ -50,6 +54,7 @@ exports.seed = function (knex) {
           medicine: false,
         },
         {
+          patient_id: 2,
           visit_date: "2020-01-17T13:31:03Z",
           treatment:
             "Patient talks about recent coughing and heavy feeling in chest. New inhaler given as prescription",
@@ -61,6 +66,7 @@ exports.seed = function (knex) {
           medicine: true,
         },
         {
+          patient_id: 2,
           visit_date: "2019-10-28T09:49:04Z",
           treatment:
             "Follow up appointment regarding new inhaler for Asthma. New inhaler seems to be helping patient breathe more easily.",
@@ -72,6 +78,7 @@ exports.seed = function (knex) {
           medicine: false,
         },
         {
+          patient_id: 2,
           visit_date: "2020-05-07T02:04:59Z",
           treatment:
             "Asthma check up - Patient talked about recent trouble breathing.",
@@ -83,6 +90,7 @@ exports.seed = function (knex) {
           medicine: true,
         },
         {
+          patient_id: 2,
           visit_date: "2020-09-09T20:40:18Z",
           treatment:
             "Follow up appointment regarding Asthma. Inhaler seems to be helping patient breathe more easily.",
