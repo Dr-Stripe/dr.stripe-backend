@@ -58,6 +58,7 @@ const setupServer = () => {
       )
       .from("visits")
       .where("patient_id", 1);
+
     res.json(ptData);
   });
 
