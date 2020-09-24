@@ -10,22 +10,17 @@ const setupServer = () => {
   const app = express()
   app.use(cors());
   app.use(express.json());
+
+//POST method
   app.post("/visits/:patient_id",async(req, res) => {
     const {patient_id} = req.params;
-    // {
-    //   "patient_id": req.body.patient_id,
-    //    "visit_date": moment().format('L'),
-    //   "treatment": req.body.treatment,
-    //   "symptoms": req.body.symptoms,
-    //   "doctor": req.body.doctor,
-    //   "paid": req.body.paid,
-    //   "hospital_name": req.body.hospital_name
-    // }]
-    //res.json(changes)
+    const time = new Date;
+    
+    
     try {
-      await db.select().table('visits').where('patient_id', req.params.patient_id).insert({
+      await db.table('visits')/*.where('patient_id', req.params.patient_id)*/.insert({
         "patient_id": req.body.patient_id,
-         "visit_date": moment().format('L'),
+         "visit_date": time,
         "treatment": req.body.treatment,
         "symptoms": req.body.symptoms,
         "doctor": req.body.doctor,
@@ -44,10 +39,11 @@ const setupServer = () => {
   });
 
  
-
+//GET method
   app.get("/payments", async (req, res) => {
     const ptData = await db
       .select(
+        "visit_id",
         "price",
         "hospital_name",
         "treatment",
@@ -62,6 +58,19 @@ const setupServer = () => {
     res.json(ptData);
   });
 
+//PATCH method: getting visit_id and update the paid value
+  app.patch("/payments/:visit_id", async (req, res) => {
+    const visit_id = req.params;
+    
+    await db
+    .table("visits")
+    .where('visit_id', req.body.visit_id)
+    .update({paid : true})
+    .then(() => res.send("success"))
+    .catch(()=>res.status(500).json({message: "Error updating new patch", error:err}))
+
+
+  })
 
   //Test endpoint for stripe checkout, probably will change
   app.post('/create-session', async(req, res)=>{
