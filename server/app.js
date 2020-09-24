@@ -53,7 +53,7 @@ const setupServer = () => {
         "medicine"
       )
       .from("visits")
-      .where("patient_id", 2);
+      .where("patient_id", 1);
 
     //change price format from string to number
     for (let obj of ptData) {
