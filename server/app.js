@@ -7,6 +7,7 @@ const moment = require("moment")
 require('dotenv').config()
 const stripe = require('stripe')(process.env.STRIPE_API_KEY)
 
+
 const setupServer = () => {
   const app = express()
   app.use(cors());
@@ -14,16 +15,6 @@ const setupServer = () => {
   app.use(bodyParser.json());
   app.post("/visits/:patient_id",async(req, res) => {
     const {patient_id} = req.params;
-    // {
-    //   "patient_id": req.body.patient_id,
-    //    "visit_date": moment().format('L'),
-    //   "treatment": req.body.treatment,
-    //   "symptoms": req.body.symptoms,
-    //   "doctor": req.body.doctor,
-    //   "paid": req.body.paid,
-    //   "hospital_name": req.body.hospital_name
-    // }]
-    //res.json(changes)
     try {
       await db.select().table('visits').where('patient_id', req.params.patient_id).insert({
         "patient_id": req.body.patient_id,
@@ -40,9 +31,7 @@ const setupServer = () => {
       })
     } catch (err) {
       res.status(500).json({message: "Error updating new post", error:err})
-  
    }
-
   });
 
  
