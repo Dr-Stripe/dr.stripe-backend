@@ -6,6 +6,7 @@ const moment = require("moment")
 require('dotenv').config()
 const stripe = require('stripe')(process.env.STRIPE_API_KEY)
 
+
 const setupServer = () => {
   const app = express()
   app.use(cors());
@@ -96,10 +97,10 @@ const setupServer = () => {
         {
           price_data: {
             currency: 'jpy',
+            price: "price_1HV6MlCjwFEQ1pgcRTmI16RQ",
             product_data: {
-              name: 'doctor_visit'
+              name: `Doctor's Visit`
             },
-            unit_amount: 2000,
           },
           quantity: 1,
         },
