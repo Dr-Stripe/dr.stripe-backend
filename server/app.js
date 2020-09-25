@@ -97,10 +97,10 @@ const setupServer = () => {
         {
           price_data: {
             currency: 'jpy',
-            price: "price_1HV6MlCjwFEQ1pgcRTmI16RQ",
             product_data: {
-              name: `Doctor's Visit`
+              name: 'doctor_visit'
             },
+            unit_amount: 2000,
           },
           quantity: 1,
         },
